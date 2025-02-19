@@ -6,6 +6,7 @@ import { Skeleton } from "./components/ui/skeleton";
 import Leads from './pages/leads/leads';
 import { AppLayout } from './components/layouts/app-layout';
 import Home from './pages/home/home';
+import Register from './pages/register/register';
 
 const Login = lazy(() => import('@/pages/auth/login')); 
 const router = createBrowserRouter([
@@ -38,6 +39,15 @@ const router = createBrowserRouter([
       <AppLayout module="crm" window="contact">
         <Suspense fallback={<Loading mode="logo" />}>
           <Home />
+        </Suspense>
+      </AppLayout>
+  },
+  {
+    path: '/register',
+    element: 
+      <AppLayout module="crm" window="contact">
+        <Suspense fallback={<Loading mode="logo" />}>
+          <Register />
         </Suspense>
       </AppLayout>
   },
