@@ -9,12 +9,12 @@ export const run = async(_params, console:IConsole) => {
     
     const users = [
       {
-        username: 'useradminket',
-        password: 'ket#2025', 
-        number: '000000',
+        username: 'Estiven',
+        password: 'ket#20256', 
+        number: '3104964755',
         profile:{
-          first_name: 'Kuepa', 
-          last_name: ''
+          first_name: 'Arboleda', 
+          last_name: 'Martinez'
         },
         homes:[
           {

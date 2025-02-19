@@ -27,7 +27,11 @@ class AuthController {
   }
   
   public register = async(req: Request, res: Response) => {
-    const _params = req._data()
+
+     const _params = req._data()
+
+    
+      console.log("registro de  usuarios", _params)
     const response = await this.service.register(_params)
     return responseUtility.build(res, response)
   }
@@ -37,4 +41,4 @@ class AuthController {
 
 
 export const authController = new AuthController()
-export { AuthController }
+export { AuthController } 

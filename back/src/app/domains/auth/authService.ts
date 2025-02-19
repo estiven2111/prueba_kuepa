@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 
 // @import_models
 import { User } from "@app/models"
+import { userService } from '@app/domains/user/userService'
 import config from "config"
 
 // @import_utilities
@@ -113,25 +114,20 @@ class AuthService {
     }
   }
   public async register (_params) {
-    try{
-      let user = await User.findOne({username:_params.username}).lean()
-      if(user) return responseUtility.error('auth.register.username_already_taken')
-        
-      if(_params.password){
-        _params.password = await this.hash(_params.password)
-      }
-      
-      
-      user = await User.create(_params)
-      user = user.toObject()
-      
+console.log(_params)
+const exists = await User.findOne({username: _params.username}).lean()
+if(exists){
+  _params['_id'] = exists._id
+      const update = await User.updateOne({_id: exists._id}, {$set: _params})
+      _params['merge_homes'] = true
+    } 
+    await userService.upsert(_params)
       return responseUtility.success({
-        user
+        _params
       })
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
+
+  
+   }
   
   public async hash (password) {
     try{

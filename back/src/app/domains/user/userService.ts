@@ -74,6 +74,7 @@ class UserService {
       if(_params.password){
         _params.password = await authService.hash(_params.password)
       }
+      console.log(_params)
       if(_params._id){
         const user = await User.findOneAndUpdate({_id: _params._id}, {$set: _params}, {new:true, lean:true})
         const third = await Third.findOne({user: user._id})
